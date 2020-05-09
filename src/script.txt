@@ -1,0 +1,12 @@
+add
+zasa
+9
+34
+no
+yes
+67
+hammer
+apathy
+car
+show
+execute_script sc.txt

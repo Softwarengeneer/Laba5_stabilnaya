@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <dragonLife>
+        <dragon>
+            <id>858</id>
+            <name> nn</name>
+            <coordinates>
+                <x>66</x>
+                <y>100.0</y>
+            </coordinates>
+            <creationDate>2020-02-13</creationDate>
+            <age>5</age>
+            <type>AIR</type>
+            <color>WHITE</color>
+            <character>WISE</character>
+            <killer>
+                <name>z</name>
+                <height>122</height>
+                <hairColor>BLUE</hairColor>
+                <eyeColor>RED</eyeColor>
+                <location>
+                    <x>12</x>
+                    <y>11</y>
+                    <z>1</z>
+                    <name>sss</name>
+                </location>
+            </killer>
+        </dragon>
+    </dragonLife>
