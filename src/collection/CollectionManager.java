@@ -1,5 +1,4 @@
 
-
 package collection;
 
 import java.util.Comparator;
@@ -15,15 +14,19 @@ import java.io.File;
 import java.io.Writer;
 import javax.xml.bind.JAXBContext;
 import java.io.FileWriter;
+import java.util.LinkedList;
+import java.util.Vector;
+
 import exception.IncorrectValue;
 import basis.DragonType;
 import input.IOInterface;
-
+// основной класс для работы команд. Содержит тела методов
 public class CollectionManager
 {
     private String file;
     private DragonCollection dragon;
     public CommandHandler handler;
+
     
     public CollectionManager(final DragonCollection dragon, final String file) {
         this.dragon = dragon;
@@ -35,18 +38,16 @@ public class CollectionManager
                 " \ninfo: Вывести информацию о коллекции " +
                 "\nadd: Добавить новый элемент в коллекцию " +
                 "\nupdate id: Обновить значение элемента коллекции, id которого равен заданному"+
-                "\n update_by_id {element}: обновить значение элемента коллекции по id"+
                 "\n remove_by_id id: Удалить элемент из коллекции по его id"+
                 "\n clear: Очистить коллекцию"+
                 "\n save: Сохранить коллекцию в файл"+
                 "\n execute_script file_name: Считать и исполнить скрипт из указанного файла"+
                 " \n exit: Завершить программу (без сохранения в файл)"+
-                " \n remove_first: Удалить из коллекции первый элемент"+
-                "\n head: вывести первый элемент коллекции" +
-                "\n history: вывести последние 9 команд"+
-                "\n sum_of_age: вывести сумму значений поля для всех элементов коллекции"+
-                "\n filter_by_type: вывести элементы, значение поля type которых равно заданному"+
-                "\n filter_contains_name name: вывести элементы, значение поля name которых имеет заданную подстроку");
+                "\nremove_lower: Удалить из коллекции все элементы, меньшие, чем заданный " +
+                "\nreorder: Отсортировать коллекцию в порядке, обратном нынешнему " +
+                "\nsort: Отсортировать коллекцию в естественном порядке " +
+                "\nsum_of_age: Вывести сумму значений поля age для всех элементов коллекции "
+                );
     }
     
     public void info() {
@@ -439,12 +440,33 @@ public class CollectionManager
         }
     }
 
+// добавить
+    public void removeLower(IOInterface c) throws IncorrectValue {
+        Dragon dragon = this.readElement(c);
+        for (int i = 0; i < this.dragon.getDragons().size(); i++) {
+            if (this.dragon.getDragons().get(i).compareTo(dragon) == -1) {
+                this.dragon.getDragons().remove(i);
+            }
+        }
+        System.out.println("Успешно удалено!");
+    }
+    public void reorder() {
+        Collections.reverse(this.dragon.getDragons());
+        System.out.println("Отсортировано!");
+    }
 
-    
-    public void sort() {
+        public void sort() {
         final Comparator<Dragon> comparator = Comparator.comparing(obj -> obj.getName());
         Collections.sort(this.dragon.getDragons(), comparator);
         System.out.println("Сортировка удалась, а твоя жизнь нет");
     }
+    public void sumOfAge() {
+        long k = 0;
+        for (int i = 0; i < dragon.getDragons().size(); i++) {
+            k += dragon.getDragons().get(i).getAge();
+        }
+        System.out.println("Сумма значений полей age = " + k);
+    }
+
 
 }
